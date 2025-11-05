@@ -9,10 +9,13 @@ import Foundation
 
 struct BrightnessStreamUseCase: TransformationUseCaseProtocol {
 
+    typealias InputParams = Void
     typealias Input = AsyncStream<InputValueType>
     typealias Output = AsyncThrowingStream<OutputValueType, Error>
     typealias InputValueType = Double
     typealias OutputValueType = Double
+
+    init(_ params: InputParams = ()) {}
 
     func validate(inputStream input: Input) -> Bool {
         //no-op

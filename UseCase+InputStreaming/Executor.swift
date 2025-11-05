@@ -14,13 +14,12 @@ actor UseCaseExecutor {
     // For single value use case outputs.
     @discardableResult
     func enqueue<T: BasicUseCaseProtocol>(
-        _ UseCaseType: T.Type,
+        _ useCase: T,
         input: T.Input,
         onValue: @escaping (T.Output) -> Void,
         onComplete: @escaping (TerminationReason) -> Void
     ) -> UUID {
         let id = UUID()
-        let useCase = UseCaseType.init()
 
         queue.append {
             let task = Task {
@@ -44,13 +43,12 @@ actor UseCaseExecutor {
     // For aggregating input values into a single output.
     @discardableResult
     func enqueue<T: AggregationUseCaseProtocol>(
-        _ UseCaseType: T.Type,
+        _ useCase: T,
         input: T.Input,
         onValue: @escaping (T.Output) -> Void,
         onComplete: @escaping (TerminationReason) -> Void
     ) -> UUID {
         let id = UUID()
-        let useCase = UseCaseType.init()
 
         queue.append {
             let task = Task {
@@ -74,13 +72,12 @@ actor UseCaseExecutor {
     // For observing multiple output values streaming from a single input value.
     @discardableResult
     func enqueue<T: ObserverUseCaseProtocol>(
-        _ UseCaseType: T.Type,
+        _ useCase: T,
         input: T.Input,
         onValue: @escaping (T.Output.Element) -> Void,
         onComplete: @escaping (TerminationReason) -> Void
     ) -> UUID {
         let id = UUID()
-        let useCase = UseCaseType.init()
 
         queue.append {
             let task = Task {
@@ -104,13 +101,12 @@ actor UseCaseExecutor {
     // For observing multiple output values streaming from a single input value.
     @discardableResult
     func enqueue<T: TransformationUseCaseProtocol>(
-        _ UseCaseType: T.Type,
+        _ useCase: T,
         input: T.Input,
         onValue: @escaping (T.Output.Element) -> Void,
         onComplete: @escaping (TerminationReason) -> Void
     ) -> UUID {
         let id = UUID()
-        let useCase = UseCaseType.init()
 
         queue.append {
             let task = Task {

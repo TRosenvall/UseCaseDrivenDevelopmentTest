@@ -38,7 +38,7 @@ extension InputStreaming {
                 )
 
                 await executor.enqueue(
-                    BrightnessStreamUseCase.self,
+                    BrightnessStreamUseCase(),
                     input: stream
                 ) { output in
                     print("Brightness applied to \(output)")

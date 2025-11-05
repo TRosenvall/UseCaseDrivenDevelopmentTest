@@ -8,10 +8,11 @@
 import Foundation
 
 protocol UseCaseProtocol {
+    associatedtype InputParams
     associatedtype Input: Sendable
     associatedtype Output: Sendable
 
-    init()
+    init(_ params: InputParams)
 }
 
 protocol BasicUseCaseProtocol: UseCaseProtocol {
